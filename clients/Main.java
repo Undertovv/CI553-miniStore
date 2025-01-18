@@ -64,6 +64,7 @@ class Main
 
     model.addObserver( view );       // Add observer to the model, ---view is observer, model is Observable
     window.setVisible(true);         // start Screen
+    window.setResizable(false);      // make window unable to be resized
   }
 
   /**
@@ -85,6 +86,7 @@ class Main
     model.addObserver( view );       // Add observer to the model
     window.setVisible(true);         // Make window visible
     model.askForUpdate();            // Initial display
+    window.setResizable(false);      // make window horribly depressed
   }
 
   /**
@@ -107,6 +109,7 @@ class Main
 
     model.addObserver( view );       // Add observer to the model
     window.setVisible(true);         // Make window visible
+    window.setResizable(false);      // make window autistic
   }
   
   /**
@@ -128,6 +131,7 @@ class Main
 
     model.addObserver( view );       // Add observer to the model
     window.setVisible(true);         // Make window visible
+    window.setResizable(false);      // make window horny
   }
   
 }

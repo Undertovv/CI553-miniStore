@@ -45,7 +45,7 @@ public class CashierView implements Observer {
      */
 
     public CashierView(RootPaneContainer rpc, MiddleFactory mf, int x, int y) {
-        try                                           //
+        try
         {
             theStock = mf.makeStockReadWriter();        // Database access
             theOrder = mf.makeOrderProcessing();        // Process order
@@ -79,15 +79,15 @@ public class CashierView implements Observer {
                 e -> cont.doBought());
         cp.add(theBtBought);                          //  Add to canvas
 
-        theAction.setBounds(110, 25, 270, 20);       // Message area
+        theAction.setBounds(110, 25, 270, 20); // Message area
         theAction.setText("");                        // Blank
         cp.add(theAction);                            //  Add to canvas
 
-        theInput.setBounds(110, 50, 270, 40);         // Input Area
-        theInput.setText("");                           // Blank
-        cp.add(theInput);                             //  Add to canvas
+        theInput.setBounds(110, 50, 270, 40);  // Input Area
+        theInput.setText("");  // Blank
+        cp.add(theInput);    //  Add to canvas
 
-        theSP.setBounds(110, 100, 270, 160);          // Scrolling pane
+        theSP.setBounds(110, 100, 270, 160);   // Scrolling pane
         theOutput.setText("");                        //  Blank
         theOutput.setFont(f);                         //  Uses font
         cp.add(theSP);                                //  Add to canvas
