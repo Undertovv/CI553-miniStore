@@ -21,6 +21,7 @@ public class CashierView implements Observer {
     private static final String CHECK = "Check";
     private static final String BUY = "Buy";
     private static final String BOUGHT = "Purchase";
+    private static final String CLEAR = "Clear";
 
     private final JLabel pageTitle = new JLabel();
     private final JLabel theAction = new JLabel();
@@ -30,6 +31,7 @@ public class CashierView implements Observer {
     private final JButton theBtCheck = new JButton(CHECK);
     private final JButton theBtBuy = new JButton(BUY);
     private final JButton theBtBought = new JButton(BOUGHT);
+    private final JButton theBtClear = new JButton(CLEAR);
 
     private StockReadWriter theStock = null;
     private OrderProcessing theOrder = null;
@@ -64,20 +66,25 @@ public class CashierView implements Observer {
         pageTitle.setText("Search products");
         cp.add(pageTitle);
 
-        theBtCheck.setBounds(16, 25 + 60 * 0, 80, 40);    // Check Button
+        theBtCheck.setBounds(16, 25, 80, 40);    // Check Button
         theBtCheck.addActionListener(                   // Call back code
                 e -> cont.doCheck(theInput.getText()));
         cp.add(theBtCheck);                           //  Add to canvas
 
-        theBtBuy.setBounds(16, 25 + 60 * 1, 80, 40);      // Buy button
+        theBtBuy.setBounds(16, 25 + 50, 80, 40);      // Buy button
         theBtBuy.addActionListener(                     // Call back code
                 e -> cont.doBuy());
         cp.add(theBtBuy);                             //  Add to canvas
 
-        theBtBought.setBounds(16, 25 + 60 * 3, 80, 40);   // Bought Button
+        theBtBought.setBounds(16, 25 + 50 * 3, 80, 40);   // Bought Button
         theBtBought.addActionListener(                  // Call back code
                 e -> cont.doBought());
         cp.add(theBtBought);                          //  Add to canvas
+
+        theBtClear.setBounds(16, 25 + 50 * 4, 80, 40);
+        theBtClear.addActionListener(
+                e -> cont.doClear());
+        cp.add(theBtClear);
 
         theAction.setBounds(110, 25, 270, 20); // Message area
         theAction.setText("");                        // Blank

@@ -57,6 +57,8 @@ public class CashierModel extends Observable {
         String theAction = "";
         theState = State.process;                  // State process
         pn = productNum.trim();                    // Product no.
+        if (pn.length() == 1) {pn = "000" + pn;} //Add zeros to product code if single digit ID is entered
+
         int amount = 1;                         //  & quantity
         try {
             if (theStock.exists(pn))              // Stock Exists?
@@ -71,7 +73,7 @@ public class CashierModel extends Observable {
                                     pr.getQuantity());               //    quantity
                     theProduct = pr;                      //   Remember prod.
                     theProduct.setQuantity(amount);     //    & quantity
-                    theState = State.checked;             //   OK await BUY
+                    theState = State.checked;             //   OK await `BUY`
                 } else {                                //  F
                     theAction =                           //   Not in Stock
                             pr.getDescription() + " not in stock";
@@ -148,6 +150,14 @@ public class CashierModel extends Observable {
         theBasket = null;
         setChanged();
         notifyObservers(theAction); // Notify
+    }
+
+    public void doClear() {
+        String theAction = "";
+        theBasket = null;
+        theAction = "Order cleared!";
+        setChanged();
+        notifyObservers(theAction);
     }
 
     /**
