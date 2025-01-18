@@ -54,7 +54,7 @@ public class Picture extends Canvas
    * Draw the picture
    * First set the area to white and then 
    *  draw the image 
-   * @param g Grapics context
+   * @param g Graphics context
    */
 
   public void drawImage( Graphics2D g )

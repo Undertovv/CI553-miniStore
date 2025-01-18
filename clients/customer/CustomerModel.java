@@ -115,7 +115,7 @@ public class CustomerModel extends Observable
   }
   
   /**
-   * ask for update of view callled at start
+   * ask for update of view called at start
    */
   private void askForUpdate()
   {
