@@ -94,16 +94,16 @@ public class CashierModel extends Observable {
      */
     public void doBuy() {
         String theAction = "";
-        int amount = 1;                         //  & quantity
+        int amount = 1;
         try {
-            if (theState != State.checked)          // Not checked
-            {                                         //  with customer
-                theAction = "please check its availablity";
+            if (theState != State.checked)          // Not checked on CustomerClient
+            {
+                theAction = "please check its availability";
             } else {
-                boolean stockBought =                   // Buy
-                        theStock.buyStock(                    //  however
+                boolean stockBought =   // Buy
+                        theStock.buyStock(         //  however
                                 theProduct.getProductNum(),         //  may fail
-                                theProduct.getQuantity());         //
+                                theProduct.getQuantity());
                 if (stockBought)                      // Stock bought
                 {                                       // T
                     makeBasketIfReq();                    //  new Basket ?
@@ -119,7 +119,7 @@ public class CashierModel extends Observable {
                     "CashierModel.doBuy", e.getMessage());
             theAction = e.getMessage();
         }
-        theState = State.process;                   // All Done
+        theState = State.process;      // All Done
         setChanged();
         notifyObservers(theAction);
     }
@@ -129,7 +129,7 @@ public class CashierModel extends Observable {
      */
     public void doBought() {
         String theAction = "";
-        int amount = 1;                       //  & quantity
+        int amount = 1;    //  & quantity
         try {
             if (theBasket != null &&
                     theBasket.size() >= 1)            // items > 1
@@ -151,7 +151,7 @@ public class CashierModel extends Observable {
     }
 
     /**
-     * ask for update of view callled at start of day
+     * ask for update of view called at start of day
      * or after system reset
      */
     public void askForUpdate() {
