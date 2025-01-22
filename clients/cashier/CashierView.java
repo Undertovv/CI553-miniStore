@@ -96,7 +96,7 @@ public class CashierView implements Observer {
         cp.add(theInput);    //  Add to canvas
 
         buyMany.setBounds(315, 50, 70, 40);
-        buyMany.setText("Num");
+        buyMany.setText("1");
         cp.add(buyMany);
 
         theSP.setBounds(110, 100, 270, 160);   // Scrolling pane

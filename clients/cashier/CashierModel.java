@@ -53,18 +53,17 @@ public class CashierModel extends Observable {
      *
      * @param productNum The product number
      */
-    public void doCheck(String productNum) {
+    public void doCheck(String productNum, Integer quantity) {
         String theAction = "";
         theState = State.process;                  // State process
         pn = productNum.trim();                    // Remove whitespace from input
         if (pn.length() == 1) {pn = "000" + pn;} //Add zeros to product code if single digit ID is entered
 
-        int amount = 1;                         //  & quantity
         try {
             if (theStock.exists(pn))              // Stock Exists?
             {                                         // T
                 Product pr = theStock.getDetails(pn);   //  Get details
-                if (pr.getQuantity() >= amount)       //  In stock?
+                if (pr.getQuantity() >= quantity)       //  In stock?
                 {                                       //  T
                     theAction =                           //   Display
                             String.format("%s : %7.2f (%2d) ", //
@@ -72,7 +71,7 @@ public class CashierModel extends Observable {
                                     pr.getPrice(),                    //    price
                                     pr.getQuantity());               //    quantity
                     theProduct = pr;                      //   Remember prod.
-                    theProduct.setQuantity(amount);     //    & quantity
+                    theProduct.setQuantity(quantity);     //    & quantity
                     theState = State.checked;             //   OK await `BUY`
                 } else {                                //  F
                     theAction =                           //   Not in Stock
