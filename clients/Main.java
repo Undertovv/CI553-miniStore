@@ -57,7 +57,7 @@ class Main {
 
         CustomerModel model = new CustomerModel(mlf);
         CustomerView view = new CustomerView(window, mlf, pos.width, pos.height);
-        CustomerController cont = new CustomerController(model, view);
+        CustomerController cont = new CustomerController(model);
         view.setController(cont);
 
         model.addObserver(view);       // Add observer to the model, ---view is observer, model is Observable
@@ -78,7 +78,7 @@ class Main {
 
         CashierModel model = new CashierModel(mlf);
         CashierView view = new CashierView(window, mlf, pos.width, pos.height);
-        CashierController cont = new CashierController(model, view);
+        CashierController cont = new CashierController(model);
         view.setController(cont);
 
         model.addObserver(view);       // Add observer to the model
@@ -102,7 +102,7 @@ class Main {
 
         PackingModel model = new PackingModel(mlf);
         PackingView view = new PackingView(window, mlf, pos.width, pos.height);
-        PackingController cont = new PackingController(model, view);
+        PackingController cont = new PackingController(model);
         view.setController(cont);
 
         model.addObserver(view);       // Add observer to the model
@@ -124,7 +124,7 @@ class Main {
 
         BackDoorModel model = new BackDoorModel(mlf);
         BackDoorView view = new BackDoorView(window, mlf, pos.width, pos.height);
-        BackDoorController cont = new BackDoorController(model, view);
+        BackDoorController cont = new BackDoorController(model);
         view.setController(cont);
 
         model.addObserver(view);       // Add observer to the model

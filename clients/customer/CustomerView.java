@@ -2,7 +2,6 @@ package clients.customer;
 
 import clients.Picture;
 import middle.MiddleFactory;
-import middle.StockReader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +13,7 @@ import java.util.Observer;
  */
 
 public class CustomerView implements Observer {
-    class Name                              // Names of buttons
+    static class Name                              // Names of buttons
     {
         public static final String CHECK = "Check";
         public static final String CLEAR = "Clear";
@@ -23,16 +22,11 @@ public class CustomerView implements Observer {
     private static final int H = 300;       // Height of window pixels
     private static final int W = 400;       // Width  of window pixels
 
-    private final JLabel pageTitle = new JLabel();
     private final JLabel theAction = new JLabel();
     private final JTextField theInput = new JTextField();
     private final JTextArea theOutput = new JTextArea();
-    private final JScrollPane theSP = new JScrollPane();
-    private final JButton theBtCheck = new JButton(Name.CHECK);
-    private final JButton theBtClear = new JButton(Name.CLEAR);
 
     private final Picture thePicture = new Picture(80, 80);
-    private StockReader theStock = null;
     private CustomerController cont = null;
 
     /**
@@ -46,7 +40,7 @@ public class CustomerView implements Observer {
 
     public CustomerView(RootPaneContainer rpc, MiddleFactory mf, int x, int y) {
         try {
-            theStock = mf.makeStockReader();     // Database Access
+            mf.makeStockReader();// Database Access
         } catch (Exception e) {
             System.out.println("Exception: " + e.getMessage());
         }
@@ -58,15 +52,18 @@ public class CustomerView implements Observer {
 
         Font f = new Font("Monospaced", Font.PLAIN, 12);  // Font f is
 
+        JLabel pageTitle = new JLabel();
         pageTitle.setBounds(110, 0, 270, 20);
         pageTitle.setText("Thank You for Shopping at MiniStore");
         cp.add(pageTitle);
 
+        JButton theBtCheck = new JButton(Name.CHECK);
         theBtCheck.setBounds(16, 25, 80, 40);    // Check button
         theBtCheck.addActionListener(     // Call back code
                 e -> cont.doCheck(theInput.getText()));
         cp.add(theBtCheck);         //  Add to canvas
 
+        JButton theBtClear = new JButton(Name.CLEAR);
         theBtClear.setBounds(16, 25 + 60, 80, 40);    // Clear button
         theBtClear.addActionListener(    // Call back code
                 e -> cont.doClear());
@@ -81,6 +78,7 @@ public class CustomerView implements Observer {
         theInput.setText("");     // Blank
         cp.add(theInput);      //  Add to canvas
 
+        JScrollPane theSP = new JScrollPane();
         theSP.setBounds(110, 100, 270, 160);  // Scrolling pane
         theOutput.setText("");     //  Blank
         theOutput.setFont(f);     //  Uses font

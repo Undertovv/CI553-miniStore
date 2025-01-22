@@ -1,5 +1,6 @@
 package catalogue;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Currency;
@@ -14,8 +15,9 @@ import java.util.Locale;
  * @version 2.2
  */
 public class Basket extends ArrayList<Product> implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1;
-    private int theOrderNum = 0;          // Order number
+    private int theOrderNum;          // Order number
 
     //Constructor for basket
     public Basket() {

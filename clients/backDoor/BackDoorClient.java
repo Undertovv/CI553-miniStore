@@ -13,7 +13,7 @@ import javax.swing.*;
 
 public class BackDoorClient
 {
-   public static void main (String args[])
+   public static void main (String[] args)
    {
      String stockURL = args.length < 1     // URL of stock RW
                      ? Names.STOCK_RW      //  default  location
@@ -37,7 +37,7 @@ public class BackDoorClient
     
     BackDoorModel      model = new BackDoorModel(mf);
     BackDoorView       view  = new BackDoorView( window, mf, 0, 0 );
-    BackDoorController cont  = new BackDoorController( model, view );
+    BackDoorController cont  = new BackDoorController( model);
     view.setController( cont );
 
     model.addObserver( view );       // Add observer to the model - view is observer, model is Observable

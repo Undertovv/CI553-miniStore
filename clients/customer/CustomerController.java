@@ -6,18 +6,15 @@ package clients.customer;
 
 public class CustomerController
 {
-  private CustomerModel model = null;
-  private CustomerView  view  = null;
+  private final CustomerModel model;
 
-  /**
+    /**
    * Constructor
-   * @param model The model 
-   * @param view  The view from which the interaction came
-   */
-  public CustomerController( CustomerModel model, CustomerView view )
+   * @param model The model
+     */
+  public CustomerController( CustomerModel model )
   {
-    this.view  = view;
-    this.model = model;
+      this.model = model;
   }
 
   /**

@@ -46,14 +46,6 @@ public class BackDoorModel extends Observable
     return theBasket;
   }
 
-  /**
-   * Check The current stock level
-   * @param productNum The product number
-   */
-  public void doCheck(String productNum )
-  {
-    pn  = productNum.trim(); // Product no.
-  }
 
   /**
    * Query 
@@ -61,7 +53,7 @@ public class BackDoorModel extends Observable
    */
   public void doQuery(String productNum )
   {
-    String theAction = "";
+    String theAction;
     pn  = productNum.trim();                    // Product no.
     try
     {                 //  & quantity
@@ -91,11 +83,11 @@ public class BackDoorModel extends Observable
    */
   public void doRStock(String productNum, String quantity )
   {
-    String theAction = "";
+    String theAction;
     theBasket = makeBasket();
     pn  = productNum.trim();                    // Product no.
     String pn  = productNum.trim();             // Product no.
-    int amount = 0;
+    int amount;
     try
     {
       String aQuantity = quantity.trim();
@@ -134,7 +126,7 @@ public class BackDoorModel extends Observable
    */
   public void doClear()
   {
-    String theAction = "";
+    String theAction;
     theBasket.clear();                        // Clear s. list
     theAction = "Enter Product Number";       // Set display
     setChanged(); notifyObservers(theAction);  // inform the observer view that model changed

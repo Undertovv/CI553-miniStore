@@ -1,5 +1,6 @@
 package catalogue;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -11,6 +12,7 @@ import java.io.Serializable;
  */
 
 public class Product implements Serializable {
+    @Serial
     private static final long serialVersionUID = 20092506;
     private String theProductNum;       // Product number
     private String theDescription;      // Description of product

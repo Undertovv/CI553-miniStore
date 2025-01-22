@@ -13,11 +13,9 @@ import java.util.Observable;
 public class CashierModel extends Observable {
     private enum State {process, checked}
 
-    private State theState = State.process;   // Current state
+    private State theState;   // Current state
     private Product theProduct = null;            // Current product
     private Basket theBasket = null;            // Bought items
-
-    private String pn = "";                      // Product being processed
 
     private StockReadWriter theStock = null;
     private OrderProcessing theOrder = null;
@@ -54,10 +52,12 @@ public class CashierModel extends Observable {
      * @param productNum The product number
      */
     public void doCheck(String productNum, Integer quantity) {
-        String theAction = "";
+        String theAction;
         theState = State.process;                  // State process
-        pn = productNum.trim();                    // Remove whitespace from input
-        if (pn.length() == 1) {pn = "000" + pn;} //Add zeros to product code if single digit ID is entered
+        // Product being processed
+        String pn = productNum.trim();                    // Remove whitespace from input
+        if (pn.length() == 1) {
+            pn = "000" + pn;} //Add zeros to product code if single digit ID is entered
 
         try {
             if (theStock.exists(pn))              // Stock Exists?
@@ -94,8 +94,7 @@ public class CashierModel extends Observable {
      * Buy the product
      */
     public void doBuy() {
-        String theAction = "";
-        int amount = 1;
+        String theAction;
         try {
             if (theState != State.checked)          // Not checked on CustomerClient
             {
@@ -129,18 +128,17 @@ public class CashierModel extends Observable {
      * Customer pays for the contents of the basket
      */
     public void doBought() {
-        String theAction = "";
-        int amount = 1;    //  & quantity
+        String theAction;
+        //  & quantity
         try {
             if (theBasket != null &&
-                    theBasket.size() >= 1)            // items > 1
+                    !theBasket.isEmpty())            // items > 1
             {                                       // T
                 theOrder.newOrder(theBasket);       //  Process order
-                theBasket = null;                     //  reset
+                //  reset
             }                                       //
             theAction = "Start New Order";            // New order
             theState = State.process;               // All Done
-            theBasket = null;
         } catch (OrderException e) {
             DEBUG.error("%s\n%s",
                     "CashierModel.doCancel", e.getMessage());
@@ -152,7 +150,7 @@ public class CashierModel extends Observable {
     }
 
     public void doClear() {
-        String theAction = "";
+        String theAction;
         theBasket = null;
         theAction = "Order cleared!";
         setChanged();
@@ -178,8 +176,10 @@ public class CashierModel extends Observable {
                 theBasket = makeBasket();                //  basket list
                 theBasket.setOrderNum(uon);            // Add an order number
             } catch (OrderException e) {
-                DEBUG.error("Comms failure\n" +
-                        "CashierModel.makeBasket()\n%s", e.getMessage());
+                DEBUG.error("""
+                        Comms failure
+                        CashierModel.makeBasket()
+                        %s""", e.getMessage());
             }
         }
     }

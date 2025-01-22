@@ -7,17 +7,15 @@ package clients.backDoor;
 
 public class BackDoorController
 {
-  private BackDoorModel model = null;
-  private BackDoorView  view  = null;
-  /**
+  private final BackDoorModel model;
+
+    /**
    * Constructor
-   * @param model The model 
-   * @param view  The view from which the interaction came
-   */
-  public BackDoorController( BackDoorModel model, BackDoorView view )
+   * @param model The model
+     */
+  public BackDoorController( BackDoorModel model)
   {
-    this.view  = view;
-    this.model = model;
+      this.model = model;
   }
 
   /**

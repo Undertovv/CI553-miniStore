@@ -15,7 +15,7 @@ import javax.swing.*;
  * @version year 2024
  */
 public class PackingClient {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         String stockURL = args.length < 1     // URL of stock RW
                 ? Names.STOCK_RW      //  default  location
                 : args[0];            //  supplied location
@@ -37,7 +37,7 @@ public class PackingClient {
 
         PackingModel model = new PackingModel(mf);
         PackingView view = new PackingView(window, mf, 0, 0);
-        PackingController cont = new PackingController(model, view);
+        PackingController cont = new PackingController(model);
         view.setController(cont);
 
         model.addObserver(view);       // Add observer to the model

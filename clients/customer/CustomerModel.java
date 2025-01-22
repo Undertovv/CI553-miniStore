@@ -4,7 +4,6 @@ import catalogue.Basket;
 import catalogue.Product;
 import debug.DEBUG;
 import middle.MiddleFactory;
-import middle.OrderProcessing;
 import middle.StockException;
 import middle.StockReader;
 
@@ -15,14 +14,12 @@ import java.util.Observable;
 /**
  * Implements the Model of the customer client
  */
-public class CustomerModel extends Observable {
-    private Product theProduct = null;          // Current product
+public class CustomerModel extends Observable { //deprecated, not worth the devtime :(
     private Basket theBasket = null;          // Bought items
 
-    private String pn = "";                    // Product being processed
+    String pn = "";                    // Product being processed
 
     private StockReader theStock = null;
-    private OrderProcessing theOrder = null;
     private ImageIcon thePic = null;
 
 
@@ -35,8 +32,11 @@ public class CustomerModel extends Observable {
         {
             theStock = mf.makeStockReader();           // Database access
         } catch (Exception e) {
-            DEBUG.error("CustomerModel.constructor\n" +
-                    "Database not created?\n%s\n", e.getMessage());
+            DEBUG.error("""
+                    CustomerModel.constructor
+                    Database not created?
+                    %s
+                    """, e.getMessage());
         }
         theBasket = makeBasket();                    // Initial Basket
     }
@@ -98,7 +98,7 @@ public class CustomerModel extends Observable {
      * Clear the products from the basket
      */
     public void doClear() {
-        String theAction = "";
+        String theAction;
         theBasket.clear();                        // Clear s. list
         theAction = "Enter Product Number";       // Set display
         thePic = null;                            // No picture
@@ -113,14 +113,6 @@ public class CustomerModel extends Observable {
      */
     public ImageIcon getPicture() {
         return thePic;
-    }
-
-    /**
-     * ask for update of view called at start
-     */
-    private void askForUpdate() {
-        setChanged();
-        notifyObservers("START only"); // Notify
     }
 
     /**

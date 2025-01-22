@@ -6,17 +6,14 @@ package clients.cashier;
  */
 
 public class CashierController {
-    private CashierModel model = null;
-    private CashierView view = null;
+    private final CashierModel model;
 
     /**
      * Constructor
      *
      * @param model The model
-     * @param view  The view from which the interaction came
      */
-    public CashierController(CashierModel model, CashierView view) {
-        this.view = view;
+    public CashierController(CashierModel model) {
         this.model = model;
     }
 
@@ -24,7 +21,6 @@ public class CashierController {
      * Check interaction from view
      *
      * @param pn The product number to be checked
-     * @param
      */
     public void doCheck(String pn, int quantity) {
         model.doCheck(pn, quantity);
