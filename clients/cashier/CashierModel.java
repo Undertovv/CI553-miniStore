@@ -56,7 +56,7 @@ public class CashierModel extends Observable {
     public void doCheck(String productNum) {
         String theAction = "";
         theState = State.process;                  // State process
-        pn = productNum.trim();                    // Product no.
+        pn = productNum.trim();                    // Remove whitespace from input
         if (pn.length() == 1) {pn = "000" + pn;} //Add zeros to product code if single digit ID is entered
 
         int amount = 1;                         //  & quantity

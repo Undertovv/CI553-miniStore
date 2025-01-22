@@ -9,6 +9,7 @@ import middle.StockException;
 import middle.StockReader;
 
 import javax.swing.*;
+import java.util.Arrays;
 import java.util.Observable;
 
 /**
@@ -30,7 +31,7 @@ public class CustomerModel extends Observable {
      * @param mf The factory to create the connection objects
      */
     public CustomerModel(MiddleFactory mf) {
-        try                                          //
+        try
         {
             theStock = mf.makeStockReader();           // Database access
         } catch (Exception e) {
@@ -54,31 +55,32 @@ public class CustomerModel extends Observable {
      *
      * @param productNum The product number
      */
-    public void doCheck(String productNum) {
-        theBasket.clear();                          // Clear s. list
+    public void doCheck (String productNum, String... quantitty) {
+        theBasket.clear();    // Clear s. list
         String theAction = "";
-        pn = productNum.trim();                    // Product no.
-        if (pn.length() == 1) {pn = "000" + pn;} //Add zeros to product code if single digit ID is entered
+        pn = productNum.trim();     // Product no.
+        int quantity = Integer.parseInt(Arrays.toString(quantitty));
+        if (pn.length() == 1) {pn = "000" + pn;}   // Add zeros to product code if single digit ID is entered
 
-        int amount = 1;                         //  & quantity
         try {
-            if (theStock.exists(pn))              // Stock Exists?
+            if (theStock.exists(pn) && Integer.parseInt(pn) < 9 && Integer.parseInt(pn) > 0)
+                // ^^ Stock Exists and is in range?
             {                                         // T
                 Product pr = theStock.getDetails(pn); //  Product
-                if (pr.getQuantity() >= amount)       //  In stock?
+                if (pr.getQuantity() >= quantity)       //  In stock?
                 {
                     theAction =                           //   Display
                             String.format("%s : %7.2f (%2d) ", //
                                     pr.getDescription(),              //    description
                                     pr.getPrice(),                    //    price
                                     pr.getQuantity());               //    quantity
-                    pr.setQuantity(amount);             //   Require 1
+                    pr.setQuantity(quantity);             //   Require 1
                     theBasket.add(pr);                  //   Add to basket
                     thePic = theStock.getImage(pn);     //    product
                 } else {                                //  F
                     theAction =                           //   Inform
                             pr.getDescription() +               //    product not
-                                    " not in stock";                   //    in stock
+                                    "Not in stock";                   //    in stock
                 }
             } else {                                  // F
                 theAction =                             //  Inform Unknown

@@ -24,8 +24,9 @@ public class CashierController {
      * Check interaction from view
      *
      * @param pn The product number to be checked
+     * @param i
      */
-    public void doCheck(String pn) {
+    public void doCheck(String pn, int i) {
         model.doCheck(pn);
     }
 
@@ -39,6 +40,7 @@ public class CashierController {
     public void doClear() {
         model.doClear();
     }
+
     /**
      * Bought interaction from view
      */

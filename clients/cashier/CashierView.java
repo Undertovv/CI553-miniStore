@@ -26,6 +26,7 @@ public class CashierView implements Observer {
     private final JLabel pageTitle = new JLabel();
     private final JLabel theAction = new JLabel();
     private final JTextField theInput = new JTextField();
+    private final JTextField buyMany = new JTextField();
     private final JTextArea theOutput = new JTextArea();
     private final JScrollPane theSP = new JScrollPane();
     private final JButton theBtCheck = new JButton(CHECK);
@@ -62,13 +63,13 @@ public class CashierView implements Observer {
 
         Font f = new Font("Monospaced", Font.PLAIN, 12);  // Font f is
 
-        pageTitle.setBounds(110, 0, 270, 20);
+        pageTitle.setBounds(110, 0, 220, 20);
         pageTitle.setText("Search products");
         cp.add(pageTitle);
 
         theBtCheck.setBounds(16, 25, 80, 40);    // Check Button
         theBtCheck.addActionListener(                   // Call back code
-                e -> cont.doCheck(theInput.getText()));
+                e -> cont.doCheck(theInput.getText(), Integer.parseInt(buyMany.getText()) ));
         cp.add(theBtCheck);                           //  Add to canvas
 
         theBtBuy.setBounds(16, 25 + 50, 80, 40);      // Buy button
@@ -90,9 +91,13 @@ public class CashierView implements Observer {
         theAction.setText("");                        // Blank
         cp.add(theAction);                            //  Add to canvas
 
-        theInput.setBounds(110, 50, 270, 40);  // Input Area
+        theInput.setBounds(110, 50, 200, 40);  // Input Area
         theInput.setText("");  // Blank
         cp.add(theInput);    //  Add to canvas
+
+        buyMany.setBounds(315, 50, 70, 40);
+        buyMany.setText("Num");
+        cp.add(buyMany);
 
         theSP.setBounds(110, 100, 270, 160);   // Scrolling pane
         theOutput.setText("");                        //  Blank

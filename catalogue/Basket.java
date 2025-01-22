@@ -21,6 +21,7 @@ public class Basket extends ArrayList<Product> implements Serializable {
     public Basket() {
         theOrderNum = 0;
     }
+
     /**
      * Set the customers unique order number
      * Valid order Numbers 1 .. N
@@ -59,6 +60,11 @@ public class Basket extends ArrayList<Product> implements Serializable {
      * Returns a description of the products in the basket suitable for printing.
      *
      * @return a string description of the basket products
+     */
+
+    /*
+    TODO:
+    Put check in string builder for duplicate items
      */
     public String getDetails() {
         Locale uk = Locale.UK;
