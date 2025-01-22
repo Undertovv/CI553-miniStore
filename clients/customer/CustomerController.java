@@ -26,6 +26,7 @@ public class CustomerController
     model.doCheck(pn);
   }
 
+
   /**
    * Clear interaction from view
    */

@@ -1,6 +1,5 @@
 package clients.cashier;
 
-import catalogue.*;
 import middle.MiddleFactory;
 import middle.Names;
 import middle.RemoteMiddleFactory;
@@ -13,7 +12,7 @@ import javax.swing.*;
 
 
 public class CashierClient {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         String stockURL = args.length < 1     // URL of stock RW
                 ? Names.STOCK_RW      //  default  location
                 : args[0];            //  supplied location
@@ -36,7 +35,7 @@ public class CashierClient {
 
         CashierModel model = new CashierModel(mf);
         CashierView view = new CashierView(window, mf, 0, 0);
-        CashierController cont = new CashierController(model, view);
+        CashierController cont = new CashierController(model);
         view.setController(cont);
 
         model.addObserver(view);       // Add observer to the model

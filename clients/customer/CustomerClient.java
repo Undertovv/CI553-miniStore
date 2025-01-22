@@ -27,7 +27,7 @@ public class CustomerClient {
 
         CustomerModel model = new CustomerModel(mf);
         CustomerView view = new CustomerView(window, mf, 0, 0);
-        CustomerController cont = new CustomerController(model, view);
+        CustomerController cont = new CustomerController(model);
         view.setController(cont);
 
         model.addObserver(view);       // Add observer to the model

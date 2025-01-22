@@ -64,10 +64,6 @@ public class Basket extends ArrayList<Product> implements Serializable {
      * @return a string description of the basket products
      */
 
-    /*
-    TODO:
-    Put check in string builder for duplicate items
-     */
     public String getDetails() {
         Locale uk = Locale.UK;
         StringBuilder sb = new StringBuilder(256);
